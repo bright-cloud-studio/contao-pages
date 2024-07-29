@@ -18,7 +18,7 @@
         "source": "https://github.com/bright-cloud-studio/contao-pages"
     },
     "require":{
-        "php": "^7.4 || ^8.0",
+        "php": "^8.1",
         "contao/core-bundle": "^5.3"
     },
     "extra":{
