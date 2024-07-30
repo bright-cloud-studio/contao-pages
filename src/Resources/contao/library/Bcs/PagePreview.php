@@ -23,7 +23,7 @@ class PagePreview
         $tokens = trimsplit('::', $insertTag);
 
 		
-        if ($tokens[0] == 'page_preview' || $tokens[0] == 'zyppy_page')
+        if ($tokens[0] == 'page_preview' || $tokens[0] == 'contao_pages')
 		{
 			
 			if (stristr($tokens[1], ":") !== FALSE) {
