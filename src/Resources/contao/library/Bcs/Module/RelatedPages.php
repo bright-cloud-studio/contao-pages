@@ -165,7 +165,7 @@ class RelatedPages extends \Contao\Module
 			}
 		}
 
-		$this->Template->request = ampersand(Environment::get('indexFreeRequest'));
+		$this->Template->request = StringUtil::ampersand(Environment::get('indexFreeRequest'));
 		$this->Template->pages = $arrPages;
 	}
 
