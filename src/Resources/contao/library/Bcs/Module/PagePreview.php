@@ -25,7 +25,7 @@ class PagePreview extends \Contao\Module
 {
 
 	/** Template @var string */
-	protected $strTemplate = 'mod_pagepreview';
+	protected $strTemplate = 'mod_page_preview';
     
 	/** @return string */
 	public function generate()
