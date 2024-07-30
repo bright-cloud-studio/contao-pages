@@ -1,13 +1,12 @@
 <?php
 
 /**
- * Bright Cloud Studio's Contao Pages
- *
- * Copyright (C) 2024-2025 Bright Cloud Studio
- *
- * @package	 bright-cloud-studio/contao-pages
- * @link	 https://brightcloudstudio.com
- */
+ * @copyright	Bright Cloud Studio
+ * @author		Bright Cloud Studio
+ * @package	Contao Pages
+ * @license		LGPL-3.0+
+ * @see			https://github.com/bright-cloud-studio/contao-pages
+ **/
 
 use Contao\Config;
 	
