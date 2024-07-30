@@ -7,7 +7,8 @@
  * @license		LGPL-3.0+
  * @see			https://github.com/bright-cloud-studio/contao-pages
  **/
- 
+
+use Contao\Controller;
 
 
 /** Palettes */
@@ -20,7 +21,7 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['preview_image_size'] = array
 (
 	'inputType'               => 'select',
 	'foreignKey'              => 'tl_image_size.name',
-	'options_callback'        => array('Asc\Backend\ZyppyPage', 'getPreviewImageSizes'),
+	'options_callback'        => array('Bcs\Backend\ContaoPages', 'getPreviewImageSizes'),
 	'eval'                    => array('mandatory'=>true, 'tl_class'=>'w50'),
 	'sql'                     => "int(10) unsigned NOT NULL default 0",
 	'relation'                => array('type'=>'hasOne', 'load'=>'lazy')
@@ -33,7 +34,7 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['navHeaderTpl'] = array
 	'inputType'               => 'select',
 	'options_callback' => static function ()
 	{
-		return Contao\Controller::getTemplateGroup('nav_');
+		return Controller::getTemplateGroup('nav_');
 	},
 	'eval'                    => array('tl_class'=>'w50'),
 	'sql'                     => "varchar(64) NOT NULL default ''",
@@ -47,7 +48,7 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['navBodyTpl'] = array
 	'inputType'               => 'select',
 	'options_callback' => static function ()
 	{
-		return Contao\Controller::getTemplateGroup('nav_');
+		return Controller::getTemplateGroup('nav_');
 	},
 	'eval'                    => array('tl_class'=>'w50'),
 	'sql'                     => "varchar(64) NOT NULL default ''",
@@ -61,7 +62,7 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['navSubitemTpl'] = array
 	'inputType'               => 'select',
 	'options_callback' => static function ()
 	{
-		return Contao\Controller::getTemplateGroup('nav_');
+		return Controller::getTemplateGroup('nav_');
 	},
 	'eval'                    => array('tl_class'=>'w50'),
 	'sql'                     => "varchar(64) NOT NULL default ''",
