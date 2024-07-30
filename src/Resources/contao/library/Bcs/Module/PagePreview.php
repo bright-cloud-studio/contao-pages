@@ -1,18 +1,16 @@
 <?php
 
 /**
- * Zyppy Page
- *
- * Copyright (C) 2018-2022 Andrew Stevens Consulting
- *
- * @package	   asconsulting/zyppy_page
- * @link	   https://andrewstevens.consulting
- */
-
-
+ * @copyright	Bright Cloud Studio
+ * @author		Bright Cloud Studio
+ * @package	Contao Pages
+ * @license		LGPL-3.0+
+ * @see			https://github.com/bright-cloud-studio/contao-pages
+ **/
 
 namespace Bcs\Module;
 
+use Contao\BackendTemplate;
 use Contao\Config;
 use Contao\Environment;
 use Contao\FrontendTemplate;
@@ -23,28 +21,19 @@ use Contao\StringUtil;
 use Contao\System;
 use Contao\FrontendUser;
 
-
 class PagePreview extends \Contao\Module
 {
 
-	/**
-	 * Template
-	 * @var string
-	 */
+	/** Template @var string */
 	protected $strTemplate = 'mod_pagepreview';
-
-
-	/**
-	 * Do not display the module if there are no menu items
-	 *
-	 * @return string
-	 */
+    
+	/** @return string */
 	public function generate()
 	{
 		if (TL_MODE == 'BE')
 		{
 			/** @var \BackendTemplate|object $objTemplate */
-			$objTemplate = new \BackendTemplate('be_wildcard');
+			$objTemplate = new BackendTemplate('be_wildcard');
 
 			$objTemplate->wildcard = '### ' . utf8_strtoupper($GLOBALS['TL_LANG']['FMD']['pagepreview'][0]) . ' ###';
 			$objTemplate->title = $this->headline;
@@ -59,9 +48,7 @@ class PagePreview extends \Contao\Module
 	}
 
 
-	/**
-	 * Generate the module
-	 */
+	/** Generate the module */
 	protected function compile()
 	{
 		/** @var \PageModel $objPage */
@@ -85,10 +72,10 @@ class PagePreview extends \Contao\Module
 		// Overwrite the domain and language if the reference page belongs to a differnt root page (see #3765)
 		if ($this->defineRoot && $this->rootPage > 0)
 		{
-			$objRootPage = \PageModel::findWithDetails($this->rootPage);
+			$objRootPage = PageModel::findWithDetails($this->rootPage);
 
 			// Set the language
-			if (\Config::get('addLanguageToUrl') && $objRootPage->rootLanguage != $objPage->rootLanguage)
+			if (Config::get('addLanguageToUrl') && $objRootPage->rootLanguage != $objPage->rootLanguage)
 			{
 				$lang = $objRootPage->rootLanguage;
 			}
@@ -100,7 +87,7 @@ class PagePreview extends \Contao\Module
 			}
 		}
 
-		$this->Template->request = ampersand(\Environment::get('indexFreeRequest'));
+		$this->Template->request = ampersand(Environment::get('indexFreeRequest'));
 		$this->Template->skipId = 'skipNavigation' . $this->id;
 		$this->Template->skipNavigation = specialchars($GLOBALS['TL_LANG']['MSC']['skipNavigation']);
 
@@ -156,7 +143,7 @@ class PagePreview extends \Contao\Module
 		}
 
 		/** @var \FrontendTemplate|object $objTemplate */
-		$objTemplate = new \FrontendTemplate($this->navigationTpl);
+		$objTemplate = new FrontendTemplate($this->navigationTpl);
 
 		$objTemplate->pid = $pid;
 		$objTemplate->type = static::class;
@@ -289,8 +276,8 @@ class PagePreview extends \Contao\Module
 
 				if ($row['page_image']) {
 					$strPhoto = '';
-					$uuid = \StringUtil::binToUuid($row['page_image']);
-					$objFile = \FilesModel::findByUuid($uuid);
+					$uuid = StringUtil::binToUuid($row['page_image']);
+					$objFile = FilesModel::findByUuid($uuid);
 					if ($objFile) {
 						$strPhoto = $objFile->path;
 
@@ -328,11 +315,11 @@ class PagePreview extends \Contao\Module
 				
 				if ($row['page_images']) {
 					$arrFormatted = array();
-					$arrImages = \StringUtil::deserialize($row['page_images']);
+					$arrImages = StringUtil::deserialize($row['page_images']);
 					foreach ($arrImages as $strImage) {
 						$strPhoto = '';
-						$uuid = \StringUtil::binToUuid($strImage);
-						$objFile = \FilesModel::findByUuid($uuid);
+						$uuid = StringUtil::binToUuid($strImage);
+						$objFile = FilesModel::findByUuid($uuid);
 						if ($objFile) {
 							$strPhoto = $objFile->path;
 
