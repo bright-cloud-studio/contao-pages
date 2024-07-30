@@ -1,13 +1,12 @@
 <?php
  
 /**
- * Zyppy Page
- *
- * Copyright (C) 2018-2022 Andrew Stevens Consulting
- *
- * @package    asconsulting/zyppy_page
- * @link       https://andrewstevens.consulting
- */
+ * @copyright	Bright Cloud Studio
+ * @author		Bright Cloud Studio
+ * @package	Contao Pages
+ * @license		LGPL-3.0+
+ * @see			https://github.com/bright-cloud-studio/contao-pages
+ **/
  
  
  
