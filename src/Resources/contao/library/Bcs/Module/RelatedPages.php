@@ -12,6 +12,7 @@
  
 namespace Bcs\Module;
 
+use Contao\BackendTemplate;
 use Contao\Config;
 use Contao\Environment;
 use Contao\FrontendTemplate;
@@ -43,7 +44,7 @@ class RelatedPages extends \Contao\Module
 		if (TL_MODE == 'BE')
 		{
 			/** @var \BackendTemplate|object $objTemplate */
-			$objTemplate = new \BackendTemplate('be_wildcard');
+			$objTemplate = new BackendTemplate('be_wildcard');
 
 			$objTemplate->wildcard = '### ' . utf8_strtoupper($GLOBALS['TL_LANG']['FMD']['related_pages'][0]) . ' ###';
 			$objTemplate->title = $this->headline;
@@ -65,27 +66,25 @@ class RelatedPages extends \Contao\Module
 	{		
 		/** @var \PageModel $objPage */
 		global $objPage;
-		$objContainer = \System::getContainer();
+		$objContainer = System::getContainer();
 
-		$arrRelated = \StringUtil::deserialize($objPage->page_related, true);
+		$arrRelated = StringUtil::deserialize($objPage->page_related, true);
 	
 		$arrPages = array();
 		foreach ($arrRelated as $intPage) {
-			$objRelatedPage = \PageModel::findByPk($intPage);
+			$objRelatedPage = PageModel::findByPk($intPage);
 			if ($objRelatedPage) {
 				$row = $objRelatedPage->row();
 				$row['url'] = $objRelatedPage->getFrontendUrl();
-				
-				
 
 				if ($row['page_image']) {
 					$strPhoto = '';
-					$uuid = \StringUtil::binToUuid($row['page_image']);
-					$objFile = \FilesModel::findByUuid($uuid);
+					$uuid = StringUtil::binToUuid($row['page_image']);
+					$objFile = FilesModel::findByUuid($uuid);
 					if ($objFile) {
 						$strPhoto = $objFile->path;
 
-						$arrMeta = \StringUtil::deserialize($objFile->meta);
+						$arrMeta = StringUtil::deserialize($objFile->meta);
 
 						$staticUrl = $objContainer->get('contao.assets.files_context')->getStaticUrl();
 						$objPicture = $objContainer->get('contao.image.picture_factory')->create(
@@ -111,7 +110,7 @@ class RelatedPages extends \Contao\Module
 						}
 						
 						$arrPicture['class'] = 'page_image';
-						$objPictureTemplate = new \FrontendTemplate('picture_default');
+						$objPictureTemplate = new FrontendTemplate('picture_default');
 						$objPictureTemplate->setData($arrPicture);
 						$row['page_image'] = $objPictureTemplate->parse();
 					}
@@ -119,15 +118,15 @@ class RelatedPages extends \Contao\Module
 				
 				if ($row['page_images']) {
 					$arrFormatted = array();
-					$arrImages = \StringUtil::deserialize($row['page_images']);
+					$arrImages = StringUtil::deserialize($row['page_images']);
 					foreach ($arrImages as $strImage) {
 						$strPhoto = '';
-						$uuid = \StringUtil::binToUuid($strImage);
-						$objFile = \FilesModel::findByUuid($uuid);
+						$uuid = StringUtil::binToUuid($strImage);
+						$objFile = FilesModel::findByUuid($uuid);
 						if ($objFile) {
 							$strPhoto = $objFile->path;
 
-							$arrMeta = \StringUtil::deserialize($objFile->meta);
+							$arrMeta = StringUtil::deserialize($objFile->meta);
 
 							$staticUrl = $objContainer->get('contao.assets.files_context')->getStaticUrl();
 							$objPicture = $objContainer->get('contao.image.picture_factory')->create(
@@ -153,7 +152,7 @@ class RelatedPages extends \Contao\Module
 							}
 							
 							$arrPicture['class'] = 'page_image';
-							$objPictureTemplate = new \FrontendTemplate('picture_default');
+							$objPictureTemplate = new FrontendTemplate('picture_default');
 							$objPictureTemplate->setData($arrPicture);
 							$arrFormatted[] = $objPictureTemplate->parse();
 						}
@@ -165,7 +164,7 @@ class RelatedPages extends \Contao\Module
 			}
 		}
 
-		$this->Template->request = ampersand(\Environment::get('indexFreeRequest'));
+		$this->Template->request = ampersand(Environment::get('indexFreeRequest'));
 		$this->Template->pages = $arrPages;
 	}
 
