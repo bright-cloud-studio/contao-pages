@@ -92,10 +92,10 @@ class PagePreview extends \Contao\Module
 		$this->Template->skipId = 'skipNavigation' . $this->id;
 		$this->Template->skipNavigation = StringUtil::specialchars($GLOBALS['TL_LANG']['MSC']['skipNavigation']);
 
-		$this->navigationTpl = ($this->navHeaderTpl ? $this->navHeaderTpl : 'nav_pagepreview_header');
+		$this->navigationTpl = ($this->navHeaderTpl ? $this->navHeaderTpl : 'nav_page_preview_header');
 		$this->Template->headerItems = $this->renderNavigation($trail[$level], 1, $host, $lang);
 
-		$this->navigationTpl = ($this->navBodyTpl ? $this->navBodyTpl : 'nav_pagepreview_body');
+		$this->navigationTpl = ($this->navBodyTpl ? $this->navBodyTpl : 'nav_page_preview_body');
 		$this->Template->bodyItems = $this->renderNavigation($trail[$level], 1, $host, $lang);
 
 		$this->Template->items = $this->Template->bodyItems;
