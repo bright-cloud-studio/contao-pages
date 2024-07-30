@@ -1,0 +1,33 @@
+<!-- indexer::stop -->
+<nav class="<?= $this->class ?> block"<?= $this->cssID ?><?php if ($this->style): ?> style="<?= $this->style ?>"<?php endif; ?> show="<?= $this->numberOfItems ?>">
+
+  <?php if ($this->headline): ?>
+    <<?= $this->hl ?>><?= $this->headline ?></<?= $this->hl ?>>
+  <?php endif; ?>
+
+  <a href="<?= $this->request ?>#<?= $this->skipId ?>" class="invisible"><?= $this->skipNavigation ?></a>
+
+  <?php if ($this->pages): ?>
+  <div class="related_pages">
+  <?php foreach($this->pages as $arrPage): ?>
+	<a href="<?= $arrPage['url'] ?>">
+		<div class="related_page">
+			<h6><?= $arrPage['pageTitle'] ?></h6>
+			<?php if ($arrPage['page_image']): ?>
+				<?= $arrPage['page_image'] ?>
+			<?php endif; ?>
+			<?php if ($arrPage['page_images']): ?>
+				<?php foreach($arrPage['page_images'] as $image): ?>
+				<?= $image ?>
+				<?php endforeach; ?>
+			<?php endif; ?>
+		</div>
+	</a>
+  <?php endforeach; ?>
+  </div>
+  <?php endif; ?>
+  
+  <a id="<?= $this->skipId ?>" class="invisible">&nbsp;</a>
+
+</nav>
+<!-- indexer::continue -->
