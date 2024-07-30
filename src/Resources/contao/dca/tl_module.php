@@ -12,7 +12,7 @@ use Contao\Controller;
 
 
 /** Palettes */
-$GLOBALS['TL_DCA']['tl_module']['palettes']['pagepreview']	= '{title_legend},name,headline,type;{image_size_legend},preview_image_size;{nav_legend},levelOffset,showLevel,hardLimit,showProtected,showHidden;{reference_legend:hide},defineRoot;{template_legend:hide},customTpl,navHeaderTpl,navBodyTpl,navSubitemTpl,navSubitemLimit,bodyNumberOfActive;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
+$GLOBALS['TL_DCA']['tl_module']['palettes']['page_preview']	= '{title_legend},name,headline,type;{image_size_legend},preview_image_size;{nav_legend},levelOffset,showLevel,hardLimit,showProtected,showHidden;{reference_legend:hide},defineRoot;{template_legend:hide},customTpl,navHeaderTpl,navBodyTpl,navSubitemTpl,navSubitemLimit,bodyNumberOfActive;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
 $GLOBALS['TL_DCA']['tl_module']['palettes']['related_pages']	= '{title_legend},name,headline,type;{image_size_legend},preview_image_size;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
 	
 	
