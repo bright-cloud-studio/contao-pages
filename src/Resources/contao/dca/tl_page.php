@@ -9,7 +9,7 @@
  * @link	 https://brightcloudstudio.com
  */
 
-
+use Contao\Config;
 	
 /**
  * Palettes
