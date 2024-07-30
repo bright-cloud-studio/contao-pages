@@ -15,10 +15,10 @@
  */
 ClassLoader::addClasses(array
 (
-    'Asc\Backend\ZyppyPage' 	=> 'system/modules/zyppy_page/library/Asc/Backend/ZyppyPage.php',
-    'Asc\Module\PagePreview' 	=> 'system/modules/zyppy_page/library/Asc/Module/PagePreview.php',
-    'Asc\Module\RelatedPages' 	=> 'system/modules/zyppy_page/library/Asc/Module/RelatedPages.php',
-	'Asc\PagePreview' 			=> 'system/modules/zyppy_page/library/Asc/PagePreview.php'
+    'Bcs\Backend\ZyppyPage' 	=> 'system/modules/zyppy_page/library/Bcs/Backend/ContaoPages.php',
+    'Bcs\Module\PagePreview' 	=> 'system/modules/zyppy_page/library/Bcs/Module/PagePreview.php',
+    'Bcs\Module\RelatedPages' 	=> 'system/modules/zyppy_page/library/Bcs/Module/RelatedPages.php',
+	'Bce\PagePreview' 			=> 'system/modules/zyppy_page/library/Bcs/PagePreview.php'
 ));
 
 /**
