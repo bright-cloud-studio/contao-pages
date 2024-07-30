@@ -9,8 +9,8 @@
  **/
 
 /** Front end modules */ 
-$GLOBALS['FE_MOD']['zyppy_page']['pagepreview'] 	= 'Bcs\Module\PagePreview'; 
-$GLOBALS['FE_MOD']['zyppy_page']['related_pages'] 	= 'Bcs\Module\RelatedPages'; 
+$GLOBALS['FE_MOD']['contao_pages']['page_preview'] 	= 'Bcs\Module\PagePreview'; 
+$GLOBALS['FE_MOD']['contao_pages']['related_pages'] 	= 'Bcs\Module\RelatedPages'; 
 
 
 /**
