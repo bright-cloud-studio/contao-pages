@@ -14,6 +14,7 @@
 namespace Bcs;
 
 use Contao\FrontendTemplate;
+use Contao\PageModel;
 use Contao\System;
 use Contao\StringUtil;
 
@@ -33,7 +34,7 @@ class PagePreview
 				list($tokens[1], $strLookup) = explode(":", $tokens[1]);
 			}
 			
-			$objContainer = \System::getContainer();
+			$objContainer = System::getContainer();
 
 			switch($tokens[1])
 			{
@@ -42,7 +43,7 @@ class PagePreview
 					if (!isset($tokens[2])) {
 						global $objPage;
 					} else {
-						$objPage = \PageModel::findPublishedByIdOrAlias($tokens[2]);
+						$objPage = PageModel::findPublishedByIdOrAlias($tokens[2]);
 					}
 					return $objPage->page_teaser;
 				break;
@@ -52,16 +53,16 @@ class PagePreview
 					if (!isset($tokens[2]) || !$tokens[2]) {
 						global $objPage;
 					} else {
-						$objPage = \PageModel::findPublishedByIdOrAlias($tokens[2]);
+						$objPage = PageModel::findPublishedByIdOrAlias($tokens[2]);
 					}
 					if ($objPage->page_image) {
 						$strPhoto = '';
-						$uuid = \StringUtil::binToUuid($objPage->page_image);
-						$objFile = \FilesModel::findByUuid($uuid);
+						$uuid = StringUtil::binToUuid($objPage->page_image);
+						$objFile = FilesModel::findByUuid($uuid);
 						if ($objFile) {
 							$strPhoto = $objFile->path;
 
-							$arrMeta = \StringUtil::deserialize($objFile->meta);
+							$arrMeta = StringUtil::deserialize($objFile->meta);
 
 							$staticUrl = $objContainer->get('contao.assets.files_context')->getStaticUrl();
 							$objPicture = $objContainer->get('contao.image.picture_factory')->create(
@@ -87,7 +88,7 @@ class PagePreview
 							}
 							
 							$arrPicture['class'] = 'page_image';
-							$objPictureTemplate = new \FrontendTemplate('picture_default');
+							$objPictureTemplate = new FrontendTemplate('picture_default');
 							$objPictureTemplate->setData($arrPicture);
 							return $objPictureTemplate->parse();
 						}
@@ -102,17 +103,17 @@ class PagePreview
 					if (!isset($tokens[2])) {
 						global $objPage;
 					} else {
-						$objPage = \PageModel::findPublishedByIdOrAlias($tokens[2]);
+						$objPage = PageModel::findPublishedByIdOrAlias($tokens[2]);
 					}
-					$arrImages = \StringUtil::deserialize($objPage->page_images);
+					$arrImages = StringUtil::deserialize($objPage->page_images);
 					if ($arrImages[$strLookup]) {
 						$strPhoto = '';
-						$uuid = \StringUtil::binToUuid($arrImages[$strLookup]);
-						$objFile = \FilesModel::findByUuid($uuid);
+						$uuid = StringUtil::binToUuid($arrImages[$strLookup]);
+						$objFile = FilesModel::findByUuid($uuid);
 						if ($objFile) {
 							$strPhoto = $objFile->path;
 
-							$arrMeta = \StringUtil::deserialize($objFile->meta);
+							$arrMeta = StringUtil::deserialize($objFile->meta);
 
 							$staticUrl = $objContainer->get('contao.assets.files_context')->getStaticUrl();
 							$objPicture = $objContainer->get('contao.image.picture_factory')->create(
@@ -138,7 +139,7 @@ class PagePreview
 							}
 							
 							$arrPicture['class'] = 'page_image';
-							$objPictureTemplate = new \FrontendTemplate('picture_default');
+							$objPictureTemplate = new FrontendTemplate('picture_default');
 							$objPictureTemplate->setData($arrPicture);
 							return $objPictureTemplate->parse();
 						}
@@ -151,7 +152,7 @@ class PagePreview
 					if (!isset($tokens[2])) {
 						global $objPage;
 					} else {
-						$objPage = \PageModel::findPublishedByIdOrAlias($tokens[2]);
+						$objPage = PageModel::findPublishedByIdOrAlias($tokens[2]);
 					}
 					if ($objPage->page_image_url) {
 						return $objPage->page_image_url;
@@ -165,7 +166,7 @@ class PagePreview
 					if (!isset($tokens[2])) {
 						global $objPage;
 					} else {
-						$objPage = \PageModel::findPublishedByIdOrAlias($tokens[2]);
+						$objPage = PageModel::findPublishedByIdOrAlias($tokens[2]);
 					}
 					if ($objPage->rich_text_1) {
 						return $objPage->rich_text_1;
@@ -178,7 +179,7 @@ class PagePreview
 					if (!isset($tokens[2])) {
 						global $objPage;
 					} else {
-						$objPage = \PageModel::findPublishedByIdOrAlias($tokens[2]);
+						$objPage = PageModel::findPublishedByIdOrAlias($tokens[2]);
 					}
 					if ($objPage->rich_text_2) {
 						return $objPage->rich_text_2;
@@ -191,7 +192,7 @@ class PagePreview
 					if (!isset($tokens[2])) {
 						global $objPage;
 					} else {
-						$objPage = \PageModel::findPublishedByIdOrAlias($tokens[2]);
+						$objPage = PageModel::findPublishedByIdOrAlias($tokens[2]);
 					}
 					if ($objPage->rich_text_3) {
 						return $objPage->rich_text_3;
@@ -204,7 +205,7 @@ class PagePreview
 					if (!isset($tokens[2])) {
 						global $objPage;
 					} else {
-						$objPage = \PageModel::findPublishedByIdOrAlias($tokens[2]);
+						$objPage = PageModel::findPublishedByIdOrAlias($tokens[2]);
 					}
 					if ($objPage->rich_text_4) {
 						return $objPage->rich_text_4;
