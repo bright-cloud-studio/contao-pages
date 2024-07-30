@@ -1,0 +1,18 @@
+<ul class="<?= $this->level ?>" role="<?= ($this->level == 'level_1') ? 'menubar' : 'menu' ?>">
+  <?php foreach ($this->items as $item): ?>
+	<?php if ($item['isActive']): ?>
+      <li class="<?= $item['class'] ?>" rel="<?= $item['alias'] ?>">
+      <span class="<?= $item['class'] ?>" role="menuitem"<?php if (!empty($item['subitems'])): ?> aria-haspopup="true"<?php endif; ?>><?= $item['link'] ?><span class='page_image'><?= $item['page_image'] ?></span><span class='page_teaser'><?= $item['page_teaser'] ?></span></span><?= $item['subitems'] ?></li>
+    <?php else: ?>
+      <li<?php if ($item['class']): ?> class="<?= $item['class'] ?>"<?php endif; ?> rel="<?= $item['alias'] ?>">
+      <a href="<?= $item['href'] ?: './' ?>" title="<?= $item['pageTitle'] ?: $item['title'] ?>"<?php if ($item['class']): ?> class="<?= $item['class'] ?>"<?php endif; ?>
+	  <?php if ($item['accesskey'] != ''): ?> accesskey="<?= $item['accesskey'] ?>"<?php endif; ?>
+	  <?php if ($item['tabindex']): ?> tabindex="<?= $item['tabindex'] ?>"<?php endif; ?>
+	  <?php if ($item['nofollow']): ?> rel="nofollow"<?php endif; ?><?= $item['target'] ?> role="menuitem"<?php if (!empty($item['subitems'])): ?> aria-haspopup="true"<?php endif; ?>>
+	  <?php if ($item['page_image']): ?><span class='page_image'><?= $item['page_image'] ?><?php endif; ?>
+      <h2><?= $item['pageTitle'] ?: $item['title'] ?></h2>
+      <span class='page_teaser'><?= $item['page_teaser'] ?></span></a>
+	  <?= $item['subitems'] ?></li>
+    <?php endif; ?>
+  <?php endforeach; ?>
+</ul>
