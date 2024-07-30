@@ -38,7 +38,7 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['navHeaderTpl'] = array
 	},
 	'eval'                    => array('tl_class'=>'w50'),
 	'sql'                     => "varchar(64) NOT NULL default ''",
-	'default'                 => 'nav_pagepreview_header'
+	'default'                 => 'nav_page_preview_header'
 );
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['navBodyTpl'] = array
@@ -52,7 +52,7 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['navBodyTpl'] = array
 	},
 	'eval'                    => array('tl_class'=>'w50'),
 	'sql'                     => "varchar(64) NOT NULL default ''",
-	'default'                 => 'nav_pagepreview_body'
+	'default'                 => 'nav_page_preview_body'
 );
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['navSubitemTpl'] = array
