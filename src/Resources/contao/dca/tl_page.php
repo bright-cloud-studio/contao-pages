@@ -10,9 +10,7 @@
 
 use Contao\Config;
 	
-/**
- * Palettes
- */
+/** Palettes */
 $GLOBALS['TL_DCA']['tl_page']['palettes']['__selector__'][] = 'page_image_overwrite_meta';
 
 foreach($GLOBALS['TL_DCA']['tl_page']['palettes'] as $name => $palette) {
@@ -28,16 +26,10 @@ foreach($GLOBALS['TL_DCA']['tl_page']['palettes'] as $name => $palette) {
 	}
 }
 
-
-/**
- * Subpalettes
- */
+/** Subpalettes */
 $GLOBALS['TL_DCA']['tl_page']['subpalettes']['page_image_overwrite_meta'] = 'page_image_alt,page_image_title';
-	
-	
-/**
- * Fields
- */
+		
+/** Fields */
 $GLOBALS['TL_DCA']['tl_page']['fields']['page_image'] = array
 (
 	'label'					 => &$GLOBALS['TL_LANG']['tl_page']['page_image'],
