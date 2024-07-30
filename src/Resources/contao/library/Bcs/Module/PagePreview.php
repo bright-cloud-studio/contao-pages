@@ -116,7 +116,9 @@ class PagePreview extends \Contao\Module
 	protected function renderNavigation($pid, $level=1, $host=null, $language=null)
 	{
 		// Get all active subpages
-		$objSubpages = PageModel::findPublishedSubpagesWithoutGuestsByPid($pid, $this->showHidden, $this instanceof ModuleSitemap);
+		
+		//$objSubpages = PageModel::findPublishedSubpagesWithoutGuestsByPid($pid, $this->showHidden, $this instanceof ModuleSitemap);
+		$objSubpages = self::getPublishedSubpagesByPid($pid, $this->showHidden, $this instanceof ModuleSitemap);
 
 		if ($objSubpages === null)
 		{
