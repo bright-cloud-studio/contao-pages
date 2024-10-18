@@ -115,10 +115,13 @@ class PagePreview extends \Contao\Module
 	 */
 	protected function renderNavigation($pid, $level=1, $host=null, $language=null)
 	{
-		// Get all active subpages
 		
+		// This function is now depreciated, so it wont work
 		//$objSubpages = PageModel::findPublishedSubpagesWithoutGuestsByPid($pid, $this->showHidden, $this instanceof ModuleSitemap);
-		$objSubpages = self::getPublishedSubpagesByPid($pid, $this->showHidden, $this instanceof ModuleSitemap);
+		// This function returns good stuffs, but it is protected so worthless
+		//$objSubpages = self::getPublishedSubpagesByPid($pid, $this->showHidden, $this instanceof ModuleSitemap);
+		// But THIS function, this is the one that makes the magic work.
+		$objSubpages = PageModel::findPublishedByPid($pid);
 
 		if ($objSubpages === null)
 		{
@@ -160,9 +163,12 @@ class PagePreview extends \Contao\Module
 
 		$subCounter = 0;
 
+
 		// Browse subpages
+		
 		foreach ($objSubpages as $objSubpage)
 		{
+
 			// Skip hidden sitemap pages
 			if ($this instanceof ModuleSitemap && $objSubpage->sitemap == 'map_never')
 			{
@@ -222,7 +228,8 @@ class PagePreview extends \Contao\Module
 						{
 							continue 2;
 						}
-
+                        
+                        
 						try
 						{
 							$href = $objNext->getFrontendUrl();
@@ -233,9 +240,12 @@ class PagePreview extends \Contao\Module
 
 							continue 2;
 						}
+						
 						break;
 
 					default:
+					    
+					    
 						try
 						{
 							$href = $objSubpage->getFrontendUrl();
@@ -246,8 +256,10 @@ class PagePreview extends \Contao\Module
 
 							continue 2;
 						}
+
 						break;
 				}
+
 
 				$row = $objSubpage->row();
 				$trail = in_array($objSubpage->id, $objPage->trail);
@@ -265,6 +277,7 @@ class PagePreview extends \Contao\Module
 				// Regular page
 				else
 				{
+				    
 					$strClass = (($subitems != '') ? 'submenu' : '') . ($objSubpage->protected ? ' protected' : '') . ($trail ? ' trail' : '') . (($objSubpage->cssClass != '') ? ' ' . $objSubpage->cssClass : '');
 
 					// Mark pages on the same level (see #2419)
@@ -278,6 +291,7 @@ class PagePreview extends \Contao\Module
 				}
 
 				if ($row['page_image']) {
+				    
 					$strPhoto = '';
 					$uuid = StringUtil::binToUuid($row['page_image']);
 					$objFile = FilesModel::findByUuid($uuid);
@@ -362,8 +376,8 @@ class PagePreview extends \Contao\Module
 
 				$row['subitems'] = $subitems;
 				$row['class'] = trim($strClass);
-				$row['title'] = specialchars($objSubpage->title, true);
-				$row['pageTitle'] = specialchars($objSubpage->pageTitle, true);
+				$row['title'] = StringUtil::specialchars($objSubpage->title, true);
+				$row['pageTitle'] = StringUtil::specialchars($objSubpage->pageTitle, true);
 				$row['link'] = $objSubpage->title;
 				$row['href'] = $href;
 				$row['nofollow'] = (strncmp($objSubpage->robots, 'noindex,nofollow', 16) === 0);
@@ -379,6 +393,7 @@ class PagePreview extends \Contao\Module
 				$items[] = $row;
 			}
 		}
+
 
 		// Add classes first and last
 		if (!empty($items))
