@@ -120,8 +120,12 @@ class PagePreview extends \Contao\Module
 		//$objSubpages = PageModel::findPublishedSubpagesWithoutGuestsByPid($pid, $this->showHidden, $this instanceof ModuleSitemap);
 		// This function returns good stuffs, but it is protected so worthless
 		//$objSubpages = self::getPublishedSubpagesByPid($pid, $this->showHidden, $this instanceof ModuleSitemap);
+		
+		$options = [
+            'order' => 'sorting ASC'
+        ];
 		// But THIS function, this is the one that makes the magic work.
-		$objSubpages = PageModel::findPublishedByPid($pid);
+		$objSubpages = PageModel::findBy(['pid = ?'], [$pid], $options);
 
 		if ($objSubpages === null)
 		{
@@ -168,6 +172,12 @@ class PagePreview extends \Contao\Module
 		
 		foreach ($objSubpages as $objSubpage)
 		{
+		    // If our page is regular or forward
+		    if($objSubpage->type == 'regular' || $objSubpage->type == 'forward') {
+		       
+		    } else {
+		         return;
+		    }
 
 			// Skip hidden sitemap pages
 			if ($this instanceof ModuleSitemap && $objSubpage->sitemap == 'map_never')
@@ -265,7 +275,7 @@ class PagePreview extends \Contao\Module
 				$trail = in_array($objSubpage->id, $objPage->trail);
 
 				// Active page
-				if (($objPage->id == $objSubpage->id || $objSubpage->type == 'forward' && $objPage->id == $objSubpage->jumpTo) && !$this instanceof \ModuleSitemap && $href == \Environment::get('request'))
+				if (($objPage->id == $objSubpage->id || $objSubpage->type == 'forward' && $objPage->id == $objSubpage->jumpTo) && !$this instanceof \ModuleSitemap && $href == Environment::get('request'))
 				{
 					// Mark active forward pages (see #4822)
 					$strClass = (($objSubpage->type == 'forward' && $objPage->id == $objSubpage->jumpTo) ? 'forward' . ($trail ? ' trail' : '') : 'active') . (($subitems != '') ? ' submenu' : '') . ($objSubpage->protected ? ' protected' : '') . (($objSubpage->cssClass != '') ? ' ' . $objSubpage->cssClass : '');
