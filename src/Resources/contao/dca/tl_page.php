@@ -18,9 +18,9 @@ foreach($GLOBALS['TL_DCA']['tl_page']['palettes'] as $name => $palette) {
 		if ($strSub = stristr($palette, '{meta_legend}')) {
 			$strSub2 = stristr($strSub, ';', TRUE);
 			if ($strSub2 !== FALSE) {
-				$GLOBALS['TL_DCA']['tl_page']['palettes'][$name] = str_replace($strSub2, $strSub2 .',page_image,page_image_overwrite_meta,page_images,page_image_url,page_teaser,page_related,rich_text_1,rich_text_2,rich_text_3,rich_text_4', $GLOBALS['TL_DCA']['tl_page']['palettes'][$name]);
+				$GLOBALS['TL_DCA']['tl_page']['palettes'][$name] = str_replace($strSub2, $strSub2 .',page_image,page_image_overwrite_meta,page_images,page_image_url,page_icon,page_teaser,page_related,rich_text_1,rich_text_2,rich_text_3,rich_text_4', $GLOBALS['TL_DCA']['tl_page']['palettes'][$name]);
 			} else {
-				$GLOBALS['TL_DCA']['tl_page']['palettes'][$name] = str_replace($strSub, $strSub .',page_image,page_image_overwrite_meta,page_images,page_icon,page_image_url,page_teaser,page_related,rich_text_1,rich_text_2,rich_text_3,rich_text_4', $GLOBALS['TL_DCA']['tl_page']['palettes'][$name]);
+				$GLOBALS['TL_DCA']['tl_page']['palettes'][$name] = str_replace($strSub, $strSub .',page_image,page_image_overwrite_meta,page_images,page_image_url,page_icon,page_teaser,page_related,rich_text_1,rich_text_2,rich_text_3,rich_text_4', $GLOBALS['TL_DCA']['tl_page']['palettes'][$name]);
 			}
 		}
 	}
