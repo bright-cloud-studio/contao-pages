@@ -10,6 +10,7 @@
  
 /** Fields */
 $GLOBALS['TL_LANG']['tl_page']['page_image']                 = array('Page image', 'Please select an image for this page.');
+$GLOBALS['TL_LANG']['tl_page']['page_icon']                  = array('Page Icon', 'Please select an icon image for this page');
 $GLOBALS['TL_LANG']['tl_page']['page_image_size']            = array('Image Size', 'Here you can set the image dimensions and the resize mode.');
 $GLOBALS['TL_LANG']['tl_page']['page_image_margin']          = array('Image Margin', 'Here you can enter the top, right, bottom and left margin.');
 $GLOBALS['TL_LANG']['tl_page']['page_image_fullsize']        = array('Full-size View/New Window<', 'Open the full-size image in a lightbox or the link in a new browser window.');
