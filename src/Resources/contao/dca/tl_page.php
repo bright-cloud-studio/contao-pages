@@ -20,7 +20,7 @@ foreach($GLOBALS['TL_DCA']['tl_page']['palettes'] as $name => $palette) {
 			if ($strSub2 !== FALSE) {
 				$GLOBALS['TL_DCA']['tl_page']['palettes'][$name] = str_replace($strSub2, $strSub2 .',page_image,page_image_overwrite_meta,page_images,page_image_url,page_teaser,page_related,rich_text_1,rich_text_2,rich_text_3,rich_text_4', $GLOBALS['TL_DCA']['tl_page']['palettes'][$name]);
 			} else {
-				$GLOBALS['TL_DCA']['tl_page']['palettes'][$name] = str_replace($strSub, $strSub .',page_image,page_image_overwrite_meta,page_images,page_image_url,page_teaser,page_related,rich_text_1,rich_text_2,rich_text_3,rich_text_4', $GLOBALS['TL_DCA']['tl_page']['palettes'][$name]);
+				$GLOBALS['TL_DCA']['tl_page']['palettes'][$name] = str_replace($strSub, $strSub .',page_image,page_image_overwrite_meta,page_images,page_icon,page_image_url,page_teaser,page_related,rich_text_1,rich_text_2,rich_text_3,rich_text_4', $GLOBALS['TL_DCA']['tl_page']['palettes'][$name]);
 			}
 		}
 	}
@@ -33,6 +33,15 @@ $GLOBALS['TL_DCA']['tl_page']['subpalettes']['page_image_overwrite_meta'] = 'pag
 $GLOBALS['TL_DCA']['tl_page']['fields']['page_image'] = array
 (
 	'label'					 => &$GLOBALS['TL_LANG']['tl_page']['page_image'],
+	'exclude'				 => true,
+	'inputType'				 => 'fileTree',
+	'eval'					 => array('filesOnly'=>true, 'extensions'=>Config::get('validImageTypes'), 'fieldType'=>'radio', 'tl_class'=>'clr w50'),
+	'sql'					 => "binary(16) NULL"
+);
+
+$GLOBALS['TL_DCA']['tl_page']['fields']['page_icon'] = array
+(
+	'label'					 => &$GLOBALS['TL_LANG']['tl_page']['page_icon'],
 	'exclude'				 => true,
 	'inputType'				 => 'fileTree',
 	'eval'					 => array('filesOnly'=>true, 'extensions'=>Config::get('validImageTypes'), 'fieldType'=>'radio', 'tl_class'=>'clr w50'),
