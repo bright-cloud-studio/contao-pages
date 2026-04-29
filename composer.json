@@ -18,8 +18,8 @@
         "source": "https://github.com/bright-cloud-studio/contao-pages"
     },
     "require":{
-        "php": "^8.1",
-        "contao/core-bundle": "^5.3"
+        "php": ">=8.1 <8.6",
+        "contao/core-bundle": "^5.3 || ^5.7"
     },
     "extra":{
         "contao-manager-plugin": "Bcs\\PageBundle\\ContaoManager\\Plugin"
