@@ -179,6 +179,19 @@ class PagePreview extends \Contao\Module
 		         return;
 		    }
 
+			// Skip unpublished pages
+			$time = time();
+			if (!$objSubpage->published || ($objSubpage->start !== '' && $objSubpage->start > $time) || ($objSubpage->stop !== '' && $objSubpage->stop <= $time))
+			{
+				continue;
+			}
+
+			// Skip hidden pages unless showHidden is enabled
+			if ($objSubpage->hide && !$this->showHidden)
+			{
+				continue;
+			}
+
 			// Skip hidden sitemap pages
 			if ($this instanceof ModuleSitemap && $objSubpage->sitemap == 'map_never')
 			{

@@ -14,13 +14,14 @@ use Contao\FrontendTemplate;
 use Contao\PageModel;
 use Contao\System;
 use Contao\StringUtil;
+use Contao\FilesModel;
 
 class PagePreview 
 {
 
     public function replaceInsertTags($insertTag)
     {
-        $tokens = trimsplit('::', $insertTag);
+        $tokens = StringUtil::trimsplit('::', $insertTag);
 
 		
         if ($tokens[0] == 'page_preview' || $tokens[0] == 'contao_pages')
