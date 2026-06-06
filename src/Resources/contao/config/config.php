@@ -9,7 +9,8 @@
  **/
 
 /** Front end modules */ 
-$GLOBALS['FE_MOD']['contao_pages']['page_preview'] 	= 'Bcs\Module\PagePreview'; 
+$GLOBALS['FE_MOD']['contao_pages']['page_preview'] 	= 'Bcs\Module\PagePreview';
+$GLOBALS['FE_MOD']['contao_pages']['pagepreview'] 	= 'Bcs\Module\PagePreview';
 $GLOBALS['FE_MOD']['contao_pages']['related_pages'] 	= 'Bcs\Module\RelatedPages'; 
 
 
