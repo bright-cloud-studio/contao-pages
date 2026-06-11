@@ -173,10 +173,8 @@ class PagePreview extends \Contao\Module
 		foreach ($objSubpages as $objSubpage)
 		{
 		    // If our page is regular or forward
-		    if($objSubpage->type == 'regular' || $objSubpage->type == 'forward') {
-		       
-		    } else {
-		         return;
+		    if($objSubpage->type != 'regular' && $objSubpage->type != 'forward') {
+		        continue;
 		    }
 
 			// Skip unpublished pages
@@ -217,7 +215,7 @@ class PagePreview extends \Contao\Module
 				}
 
 				// Check whether there will be subpages
-				if ($objSubpage->subpages > 0 && (!$this->showLevel || $this->showLevel >= $level || (!$this->hardLimit && ($objPage->id == $objSubpage->id || \in_array($objPage->id, $this->Database->getChildRecords($objSubpage->id, 'tl_page'))))))
+				if ($objSubpage->subpages > 0 && (!$this->showLevel || $this->showLevel >= $level || (!$this->hardLimit && ($objPage->id == $objSubpage->id || \in_array($objPage->id, \Contao\Database::getInstance()->getChildRecords($objSubpage->id, 'tl_page'))))))
 				{
 					$subitems = $this->renderNavigation($objSubpage->id, $level, $host, $language);
 				}
