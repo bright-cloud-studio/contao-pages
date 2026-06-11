@@ -172,8 +172,8 @@ class PagePreview extends \Contao\Module
 		
 		foreach ($objSubpages as $objSubpage)
 		{
-		    // If our page is regular or forward
-		    if($objSubpage->type != 'regular' && $objSubpage->type != 'forward') {
+		    // Only include regular pages, forward (internal redirect), and redirect (external redirect)
+		    if($objSubpage->type != 'regular' && $objSubpage->type != 'forward' && $objSubpage->type != 'redirect') {
 		        continue;
 		    }
 
