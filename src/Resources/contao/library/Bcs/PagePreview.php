@@ -59,11 +59,11 @@ class PagePreview
 						if ($objFile) {
 							$strPhoto = $objFile->path;
 
-							$arrMeta = StringUtil::deserialize($objFile->meta);
+							$arrMeta = StringUtil::deserialize($objFile->meta) ?: [];
 
 							$staticUrl = $objContainer->get('contao.assets.files_context')->getStaticUrl();
 							$objPicture = $objContainer->get('contao.image.picture_factory')->create(
-								$objContainer->getParameter('kernel.project_dir') . '/' . $objFile->path, 
+								$objContainer->getParameter('kernel.project_dir') . '/' . $objFile->path,
 								($tokens[3] ? $tokens[3] : null)
 							);
 
@@ -73,8 +73,8 @@ class PagePreview
 								'sources' => $objPicture->getSources($objContainer->getParameter('kernel.project_dir'), $staticUrl)
 							);
 
-							$arrPicture['alt'] = $arrMeta['page_image_title'];
-							$arrPicture['title'] = $arrMeta['page_image_title'];
+							$arrPicture['alt'] = $arrMeta['page_image_title'] ?? '';
+							$arrPicture['title'] = $arrMeta['page_image_title'] ?? '';
 							if ($objPage->page_image_overwrite_meta) {
 								if ($objPage->page_image_alt) {
 									$arrPicture['alt'] = $objPage->page_image_alt;
@@ -110,11 +110,11 @@ class PagePreview
 						if ($objFile) {
 							$strPhoto = $objFile->path;
 
-							$arrMeta = StringUtil::deserialize($objFile->meta);
+							$arrMeta = StringUtil::deserialize($objFile->meta) ?: [];
 
 							$staticUrl = $objContainer->get('contao.assets.files_context')->getStaticUrl();
 							$objPicture = $objContainer->get('contao.image.picture_factory')->create(
-								$objContainer->getParameter('kernel.project_dir') . '/' . $objFile->path, 
+								$objContainer->getParameter('kernel.project_dir') . '/' . $objFile->path,
 								($tokens[3] ? $tokens[3] : null)
 							);
 
@@ -124,8 +124,8 @@ class PagePreview
 								'sources' => $objPicture->getSources($objContainer->getParameter('kernel.project_dir'), $staticUrl)
 							);
 
-							$arrPicture['alt'] = $arrMeta['page_image_title'];
-							$arrPicture['title'] = $arrMeta['page_image_title'];
+							$arrPicture['alt'] = $arrMeta['page_image_title'] ?? '';
+							$arrPicture['title'] = $arrMeta['page_image_title'] ?? '';
 							if ($objPage->page_image_overwrite_meta) {
 								if ($objPage->page_image_alt) {
 									$arrPicture['alt'] = $objPage->page_image_alt;

@@ -361,11 +361,11 @@ class PagePreview extends \Contao\Module
 						if ($objFile) {
 							$strPhoto = $objFile->path;
 
-							$arrMeta = StringUtil::deserialize($objFile->meta);
+							$arrMeta = StringUtil::deserialize($objFile->meta) ?: [];
 
 							$staticUrl = $objContainer->get('contao.assets.files_context')->getStaticUrl();
 							$objPicture = $objContainer->get('contao.image.picture_factory')->create(
-								$objContainer->getParameter('kernel.project_dir') . '/' . $objFile->path, 
+								$objContainer->getParameter('kernel.project_dir') . '/' . $objFile->path,
 								($this->preview_image_size ? $this->preview_image_size : null)
 							);
 
@@ -375,8 +375,8 @@ class PagePreview extends \Contao\Module
 								'sources' => $objPicture->getSources($objContainer->getParameter('kernel.project_dir'), $staticUrl)
 							);
 
-							$arrPicture['alt'] = $arrMeta['page_image_title'];
-							$arrPicture['title'] = $arrMeta['page_image_title'];
+							$arrPicture['alt'] = $arrMeta['page_image_title'] ?? '';
+							$arrPicture['title'] = $arrMeta['page_image_title'] ?? '';
 							if ($row['page_image_overwrite_meta']) {
 								if ($row['page_image_alt']) {
 									$arrPicture['alt'] = $row['page_image_alt'];
